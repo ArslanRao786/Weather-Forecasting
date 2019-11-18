@@ -1,0 +1,13 @@
+.container1 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container2 {
+  width: 6%;
+}
+
+i {
+  font-size: 50px;
+}

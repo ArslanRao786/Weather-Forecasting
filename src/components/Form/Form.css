@@ -1,0 +1,15 @@
+.formFormatting {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+input {
+  height: 30px;
+  width: 500px;
+}
+
+button {
+  height: 35px;
+  width: 200px;
+}

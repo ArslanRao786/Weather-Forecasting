@@ -1,0 +1,10 @@
+.container {
+  width: 100%;
+  align-items: center;
+}
+.nameformatting {
+  width: 40%;
+  font-size: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
