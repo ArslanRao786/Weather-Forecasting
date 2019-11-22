@@ -15,9 +15,9 @@ key = 'c73aa228bfba692462f96e89080aa39a'
 In case of key is not working or invalid, you can create your own key by subscribing openweatherApi.
 
 ## Search By
-# City Name
+### City Name
 
-# Parameters
+#### Parameters
 City Name e.g Islamabad
 Key
 Unit (optional)
