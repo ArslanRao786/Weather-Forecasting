@@ -22,18 +22,21 @@ City Name e.g Islamabad
 Key
 Unit (optional)
 
-# Zip Code
+### Zip Code
 
-# Parameters
+#### Parameters
 Zip Code e.g 44000,pk
 Key
 Unit (optional)
 
-# Geographic Coordinates
+### Geographic Coordinates
 
-# Parameters
+#### Parameters
 Latitudes
+
 Longitudes
+
 Key
+
 Unit (optional)
 
