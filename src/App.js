@@ -1,61 +1,80 @@
-import React from "react";
+// libs
+import React, { useState } from "react";
+
+// src
 import "./App.css";
 import Form from "./components/Form";
 import Weather from "./components/Weather";
+import averageCalculator from "./averageCalculator";
+import getFormattedData from "./formattedData";
 
 const API_KEY = "0cba01f1721b1f2b964a0f5cf6d0d255";
 
-class App extends React.Component {
-  state = {
-    data: undefined
-  };
+const App = () => {
+  const [data, setdata] = useState({});
+  const [loading, setloading] = useState(false);
 
-  getWeather = async e => {
+  const getWeather = async e => {
     e.preventDefault();
-    const city = e.target.elements.city.value;
-    // const zipCode = e.target.elements.zipCode.value;
-    // const latitude = e.target.elements.latitude.value;
-    // const longitude = e.target.elements.longitude.value;
 
-    if (city) {
+    if (e.target.elements.city && e.target.elements.city.value) {
+      setloading(true);
       const api_call = await fetch(
-        `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`
+        `http://api.openweathermap.org/data/2.5/forecast?q=${e.target.elements.city.value}&units=metric&appid=${API_KEY}`
       );
-      this.setState({
-        data: await api_call.json()
-      });
+      setdata(await api_call.json());
+      setloading(false);
+    } else if (e.target.elements.zipCode && e.target.elements.zipCode.value) {
+      setloading(true);
+      const api_call = await fetch(
+        `http://api.openweathermap.org/data/2.5/forecast?zip=${e.target.elements.zipCode.value}&units=metric&appid=${API_KEY}`
+      );
+      setdata(await api_call.json());
+      setloading(false);
+    } else if (
+      e.target.elements.latitude.value &&
+      e.target.elements.longitude.value
+    ) {
+      setloading(true);
+      const api_call = await fetch(
+        `http://api.openweathermap.org/data/2.5/forecast?lat=${e.target.elements.latitude.value}&lon=${e.target.elements.longitude.value}&units=metric&appid=${API_KEY}`
+      );
+      setdata(await api_call.json());
+      setloading(false);
     }
   };
-  //this.getData(data);
-  //console.log(data);
-  //   } else if (zipCode) {
-  //     const api_call = await fetch(
-  //       `http://api.openweathermap.org/data/2.5/forecast?id=${zipCode}&units=metric&appid=${API_KEY}`
-  //     );
-  //     const data = await api_call.json();
-  //     console.log(data);
-  //   } else if (latitude && longitude) {
-  //     const api_call = await fetch(
-  //       `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
-  //     );
-  //     const data = await api_call.json();
-  //     console.log(data);
-  //   }
-  // };
 
-  render() {
-    return (
-      <div>
-        <div className="header">
-          <h1>WEATHER FORECAST (5 DAYS)</h1>
-        </div>
-        <div>
-          <Form getWeather={this.getWeather} />
-          <Weather data={this.state.data} />
-        </div>
+  const getData = data => {
+    const { list, city: { name, country } = {} } = data;
+    const formattedData = getFormattedData(list);
+    return { formattedData, country, name };
+  };
+
+  return (
+    <div>
+      <div className="header">
+        <h1>WEATHER FORECAST (5 DAYS)</h1>
       </div>
-    );
-  }
-}
+
+      <div>
+        <Form getWeather={getWeather} />
+
+        {loading === true && (
+          <h1 style={{ textAlign: "center" }}>loading...</h1>
+        )}
+        {data.cod === "200" && (
+          <Weather
+            averagedData={averageCalculator(getData(data))}
+            data={getData(data)}
+          />
+        )}
+
+        {data.cod === "404" && (
+          <h1 style={{ textAlign: "center" }}>Data not Found</h1>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default App;

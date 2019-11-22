@@ -1,13 +1,72 @@
 .container1 {
+  height: 150px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container2 {
+  width: 7%;
+}
+
+i {
+  font-size: 50px;
+}
+
+.container4 {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.container2 {
-  width: 6%;
+.smallContainer {
+  width: 45%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-i {
-  font-size: 50px;
+.detailsFormatting {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.containerTemp {
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+}
+
+.iconContainer {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.asText {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  font-size: large;
+}
+
+.descriptionFormatting {
+  width: 36%;
+  font-size: large;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.marginRemoving {
+  width: 40%;
+  margin: 0 0 0 0;
+  font-size: x-large;
+  display: flex;
+  justify-content: flex-end;
 }
