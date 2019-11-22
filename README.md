@@ -12,6 +12,7 @@ You will also see any lint errors in the console.
 
 ## Key
 key = 'c73aa228bfba692462f96e89080aa39a'
+
 In case of key is not working or invalid, you can create your own key by subscribing openweatherApi.
 
 ## Search By
@@ -19,14 +20,18 @@ In case of key is not working or invalid, you can create your own key by subscri
 
 #### Parameters
 City Name e.g Islamabad
+
 Key
+
 Unit (optional)
 
 ### Zip Code
 
 #### Parameters
 Zip Code e.g 44000,pk
+
 Key
+
 Unit (optional)
 
 ### Geographic Coordinates
